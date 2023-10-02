@@ -114,7 +114,7 @@ public class Cancellation implements ActionListener {
 
     public void getFlightCode() {
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
             statement = connection.createStatement();
             String query = "SELECT * FROM booking";
             resultSet = statement.executeQuery(query);
@@ -130,7 +130,7 @@ public class Cancellation implements ActionListener {
 
     public void getName() {
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
             st = connection.createStatement();
             String query = "SELECT * FROM booking WHERE flight_code='" + flightCodeBox.getSelectedItem().toString() + "'";
             rs = st.executeQuery(query);
@@ -151,7 +151,7 @@ public class Cancellation implements ActionListener {
     private void cancel() {
 
             try {
-                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
                 String query = "DELETE FROM booking WHERE flight_code ='" + flightCodeBox.getSelectedItem().toString() + "'";
                 Statement del = connection.createStatement();
                 del.executeUpdate(query);
@@ -163,7 +163,7 @@ public class Cancellation implements ActionListener {
     public void displayCancellation() {
 
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM cancellation");
             table.setModel(DbUtils.resultSetToTableModel(resultSet));
@@ -194,7 +194,7 @@ public class Cancellation implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Missing information");
             } else {
                 try {
-                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
                     PreparedStatement add = connection.prepareStatement("INSERT INTO cancellation(name, flight_code, cancel_date) VALUES(?, ?, ?)");
                     add.setString(1, nameText.getText());
                     add.setString(2, flightCodeBox.getSelectedItem().toString());

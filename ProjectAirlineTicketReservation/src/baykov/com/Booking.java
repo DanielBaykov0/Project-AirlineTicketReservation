@@ -148,7 +148,7 @@ public class Booking extends Component implements ActionListener {
 
     public void getPassengerName() {
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
             st = connection.createStatement();
             String query = "SELECT * FROM passengers";
             rs = st.executeQuery(query);
@@ -164,7 +164,7 @@ public class Booking extends Component implements ActionListener {
 
     public void getPassengerData() {
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
             st = connection.createStatement();
             String query = "SELECT * FROM passengers WHERE name='" + passengerNameBox.getSelectedItem().toString() + "'";
             rs = st.executeQuery(query);
@@ -181,7 +181,7 @@ public class Booking extends Component implements ActionListener {
     public void getFlight() {
 
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
             st = connection.createStatement();
             String query = "SELECT * FROM flight";
             rs = st.executeQuery(query);
@@ -197,7 +197,7 @@ public class Booking extends Component implements ActionListener {
     public void displayBooking() {
 
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM booking");
             table.setModel(DbUtils.resultSetToTableModel(resultSet));
@@ -240,7 +240,7 @@ public class Booking extends Component implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Missing information");
             } else {
                 try {
-                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
                     PreparedStatement add = connection.prepareStatement("INSERT INTO booking(name, flight_code, gender, pass, amount, nat) VALUES(?, ?, ?, ?, ?, ?)");
                     add.setString(1, passengerNameBox.getSelectedItem().toString());
                     add.setString(2, flightCodeBox.getSelectedItem().toString());

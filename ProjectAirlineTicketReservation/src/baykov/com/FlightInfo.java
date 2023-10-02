@@ -149,7 +149,7 @@ public class FlightInfo implements ActionListener {
 
         // displays all the flights in the table
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM flight");
             table.setModel(DbUtils.resultSetToTableModel(resultSet));
@@ -194,7 +194,7 @@ public class FlightInfo implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Select a flight");
             } else {
                 try {
-                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
                     String query = "UPDATE flight SET source=?, destination=?, take_of_date=?, seats=? WHERE flight_code=?";
                     PreparedStatement edit = connection.prepareStatement(query);
                     edit.setString(5, key);
@@ -219,7 +219,7 @@ public class FlightInfo implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Select a flight");
             } else {
                 try {
-                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
                     String query = "DELETE FROM flight WHERE flight_code ='" + key + "'";
                     Statement del = connection.createStatement();
                     del.executeUpdate(query);
@@ -238,7 +238,7 @@ public class FlightInfo implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Missing information");
             } else {
                 try {
-                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
                     PreparedStatement add = connection.prepareStatement("INSERT INTO flight VALUES(?, ?, ?, ?, ?)");
                     add.setString(1, flightCodeText.getText());
                     add.setString(2, sourceBox.getSelectedItem().toString());

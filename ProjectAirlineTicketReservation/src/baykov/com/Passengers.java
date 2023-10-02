@@ -158,7 +158,7 @@ public class Passengers implements ActionListener {
     public void displayPassengers() {
 
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM passengers");
             table.setModel(DbUtils.resultSetToTableModel(resultSet));
@@ -202,7 +202,7 @@ public class Passengers implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Select a passenger");
             } else {
                 try {
-                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
                     String query = "UPDATE passengers SET nat=?, gender=?, pass=?, address=?, phone=? WHERE name=?";
                     PreparedStatement edit = connection.prepareStatement(query);
                     edit.setString(6, passengerNameText.getText());
@@ -228,7 +228,7 @@ public class Passengers implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Select a passenger");
             } else {
                 try {
-                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
                     String query = "DELETE FROM passengers WHERE name ='" + string + "'";
                     Statement del = connection.createStatement();
                     del.executeUpdate(query);
@@ -247,7 +247,7 @@ public class Passengers implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Missing information");
             } else {
                 try {
-                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "wolf", "hangman");
+                    connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/airline?currentSchema=air", "postgres", "hangman96z");
                     PreparedStatement add = connection.prepareStatement("INSERT INTO passengers(name, nat, gender, pass, address, phone) VALUES(?, ?, ?, ?, ?, ?)");
                     add.setString(1, passengerNameText.getText());
                     add.setString(2, nationalityText.getText());
